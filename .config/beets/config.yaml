@@ -1,0 +1,14 @@
+directory: ~/Music
+library: ~/beets/data/musiclibrary.db
+plugins: fetchart info inline lastgenre scrub zero
+default: $albumartist/$artist/$disc_and_track $title
+disc_and_track: u'%021.%021' % (disc, track) if
+                disctotal > 1 else u'%021' % (track)
+fetchart:
+  source: itunes spotify amazon google fanarttv
+lastgenre:
+  source: track
+zero:
+  fields: images
+  update_database: true
+  
