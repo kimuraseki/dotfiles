@@ -1,5 +1,3 @@
-directory: ~/Music
-library: ~/beets/data/musiclibrary.db
 plugins: fetchart info inline lastgenre scrub zero
 default: $albumartist/$artist/$disc_and_track $title
 disc_and_track: u'%021.%021' % (disc, track) if
@@ -11,4 +9,3 @@ lastgenre:
 zero:
   fields: images
   update_database: true
-  
