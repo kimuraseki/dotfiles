@@ -14,7 +14,7 @@
 	],
 
 	"modules-center": [
-		"clock"
+		"custom/clock"
 	],
 
 	"modules-right": [
@@ -33,9 +33,12 @@
 		"tooltip": false
 	},
 
-	"clock": {
-		"format": "{:%I:%M %p - %a, %d %b %Y}",
-		"tooltip": false
+	"custom/clock": {
+		"exec": "~/.config/waybar/scripts/clock_jp.sh",
+		"exec-tooltip": "~/.config/waybar/scripts/clock_jp_tooltip.sh",
+		"interval": 60,
+		"format": "{}",
+                "justify": "center"
 	},
 
 	"tray": {
@@ -44,7 +47,8 @@
 	},
 
 	"cpu": {
-		"format": "cpu {usage}%",
+		"format": "CPU {usage}%",
+		"tooltip-format": "CPU 使用率: {usage}%",
 		"interval": 2,
 		"states": {
 			"critical": 90
@@ -52,7 +56,8 @@
 	},
 
 	"memory": {
-		"format": "mem {percentage}%",
+		"format": "RAM {used:0.1f} / {total:0.1f}",
+                "tooltip-format": "メモリ使用量: {used:0.1f} / {total:0.1f}",
 		"interval": 2,
 		"states": {
 			"critical": 80
@@ -61,34 +66,34 @@
 
 	"temperature": {
 		"critical-threshold": 80,
-		"format": "tmp {temperatureC}°C"
+		"format": "{temperatureC}°C",
+                "tooltip-format": "温度: {temperatureC}°C"
 	},
 
 	"battery": {
-		"format": "bat {capacity}%",
+		"format": "{capacity}%",
+		"tooltip-format": "バッテリー残量: {capacity}%",
 		"interval": 5,
 		"states": {
 			"warning": 20,
 			"critical": 10
-		},
-		"tooltip": false
+		}
 	},
 
 	"network": {
-		"format-wifi": "wifi {bandwidthDownBits}",
-		"format-ethernet": "enth {bandwidthDownBits}",
-		"format-disconnected": "no network",
-		"interval": 5,
-		"tooltip": false
+		"format-wifi": "Wi-Fi {signalStrength}%",
+                "format-ethernet": "有線LAN: {ifname}",
+                "format-disconnected": "未接続",
+                "tooltip-format": "{ipaddr}",
+                "interval": 5,
+                "tooltip": false
 	},
 
 	"pulseaudio": {
-		"format": "{volume}% | {format_source} ",
-		"format-muted": "OFF | {format_source}",
-		"format-source": "{volume}%",
-		"format-source-muted": "OFF",
-		"on-click": "pavucontrol",
-		"tooltip": false
+		"format": "音量 {volume}%",
+                "format-muted": "音量 ミュート",
+                "tooltip-format": "出力音量: {volume}%",
+                "on-click": "pavucontrol"
 	},
 
 	"idle_inhibitor": {
@@ -101,3 +106,4 @@
 
 	"reload_on_style_change": true
 }
+
